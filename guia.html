@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meia Maratona — Bruno</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8f7f5;
+  color: #1a1a1a;
+  padding: 40px 20px 80px;
+  line-height: 1.6;
+}
+
+.nav-bar {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background: #fff;
+  transition: border-color 0.15s, color 0.15s;
+}
+.nav-back:hover { border-color: #bbb; color: #333; }
+.nav-checklist {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #d05a1e;
+  transition: background 0.15s;
+}
+.nav-checklist:hover { background: #b84c14; }
+
+.page { max-width: 760px; margin: 0 auto; }
+
+/* HEADER */
+.header {
+  border-bottom: 1.5px solid #e0ddd8;
+  padding-bottom: 28px;
+  margin-bottom: 48px;
+}
+.header-label {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 10px;
+}
+.header-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.header-title span { color: #d05a1e; }
+.header-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.pill {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #ddd;
+  color: #555;
+  background: #fff;
+}
+.pill.accent { border-color: #d05a1e; color: #d05a1e; background: #fff8f5; }
+
+/* SECTION */
+.section { margin-bottom: 52px; }
+.section-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8e6e1;
+}
+
+/* PACE BLOCKS */
+.blocks { display: flex; flex-direction: column; gap: 1px; background: #e0ddd8; border-radius: 10px; overflow: hidden; }
+.block {
+  display: flex; align-items: stretch;
+  background: #fff;
+  gap: 0;
+}
+.block:first-child { border-radius: 10px 10px 0 0; }
+.block:last-child { border-radius: 0 0 10px 10px; }
+.block-bar { width: 4px; flex-shrink: 0; }
+.block-num {
+  width: 48px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px; font-weight: 600;
+  color: #bbb;
+  border-right: 1px solid #f0ede8;
+}
+.block-main { flex: 1; padding: 14px 16px; }
+.block-km {
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: #aaa;
+  margin-bottom: 2px;
+}
+.block-pace {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 26px; font-weight: 700;
+  line-height: 1; margin-bottom: 5px;
+}
+.block-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
+.block-right {
+  padding: 14px 14px 14px 0;
+  display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: center;
+  gap: 4px; min-width: 56px;
+}
+.effort-label { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; }
+.effort-dots { display: flex; gap: 3px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #e8e6e1; }
+
+/* effort 1 */
+.b1 .block-bar { background: #9ab8d8; }
+.b1 .block-pace { color: #3a7bb5; }
+.b1 .dot.on { background: #3a7bb5; }
+/* effort 2 */
+.b2 .block-bar { background: #9dcfb3; }
+.b2 .block-pace { color: #2a9463; }
+.b2 .dot.on { background: #2a9463; }
+/* effort 3 */
+.b3 .block-bar { background: #f0c87a; }
+.b3 .block-pace { color: #b07a10; }
+.b3 .dot.on { background: #b07a10; }
+/* effort 4 */
+.b4 .block-bar { background: #f0a87a; }
+.b4 .block-pace { color: #d05a1e; }
+.b4 .dot.on { background: #d05a1e; }
+/* effort 5 */
+.b5 .block-bar { background: #e88; }
+.b5 .block-pace { color: #c03030; }
+.b5 .dot.on { background: #c03030; }
+
+.pace-note {
+  margin-top: 12px;
+  font-size: 12.5px; color: #777;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e8e6e1;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.pace-note strong { color: #333; }
+
+/* GEL CARDS */
+.gel-list { display: flex; flex-direction: column; gap: 12px; }
+.gel-item {
+  display: flex; align-items: stretch;
+  background: #fff; border: 1px solid #e8e6e1;
+  border-radius: 10px; overflow: hidden;
+}
+.gel-km {
+  width: 72px; flex-shrink: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 14px 8px;
+  border-right: 1px solid #f0ede8;
+}
+.gel-km-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 22px; font-weight: 700;
+  line-height: 1;
+}
+.gel-km-lbl { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #bbb; }
+.gel-body { flex: 1; padding: 14px 16px; }
+.gel-tag {
+  display: inline-block;
+  font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 7px; border-radius: 4px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.gel-name { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 4px; }
+.gel-desc { font-size: 12px; color: #666; line-height: 1.6; }
+.gel-desc strong { color: #333; }
+
+.g1 .gel-km { background: #f0f5fb; }
+.g1 .gel-km-num { color: #3a7bb5; }
+.g1 .gel-tag { background: #e6f0fa; color: #3a7bb5; }
+.g2 .gel-km { background: #fff5f0; }
+.g2 .gel-km-num { color: #d05a1e; }
+.g2 .gel-tag { background: #fceee6; color: #d05a1e; }
+
+.gel-warning {
+  margin-top: 8px;
+  font-size: 12px; color: #888;
+  padding: 10px 13px;
+  background: #fffbf0;
+  border: 1px solid #f0e0b0;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.gel-warning strong { color: #b07a10; }
+
+/* WEEK NUTRITION */
+.week { display: flex; flex-direction: column; gap: 0; border: 1px solid #e0ddd8; border-radius: 10px; overflow: hidden; }
+.day {
+  border-bottom: 1px solid #e8e6e1;
+  background: #fff;
+}
+.day:last-child { border-bottom: none; }
+.day-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  background: #fafaf8;
+  border-bottom: 1px solid #f0ede8;
+  cursor: default;
+}
+.day-date {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: #ccc; min-width: 28px;
+}
+.day-name { font-size: 13px; font-weight: 600; color: #333; flex: 1; }
+.day-badge {
+  font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px;
+  font-weight: 500;
+}
+.db-normal { background: #f0ede8; color: #888; }
+.db-carb { background: #fef3d8; color: #a07010; }
+.db-load { background: #fde8e0; color: #c04020; }
+.db-light { background: #e8f5ee; color: #2a7a50; }
+.db-race { background: #fceee6; color: #d05a1e; }
+
+.day-meals { padding: 12px 16px; display: flex; flex-direction: column; gap: 9px; }
+.meal { display: flex; gap: 12px; }
+.meal-time { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; min-width: 56px; padding-top: 3px; flex-shrink: 0; }
+.meal-info { flex: 1; }
+.meal-title { font-size: 13px; font-weight: 500; color: #222; margin-bottom: 1px; }
+.meal-note { font-size: 11.5px; color: #888; line-height: 1.5; }
+.meal-sep { height: 1px; background: #f0ede8; margin: 2px 0; }
+.recipe-box {
+  margin-top: 6px;
+  background: #f5f8fd;
+  border: 1px solid #dce8f5;
+  border-radius: 7px;
+  padding: 10px 12px;
+}
+.recipe-box-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #5a8bc0; margin-bottom: 4px; }
+.recipe-box-title { font-size: 12px; font-weight: 600; color: #2a5a90; margin-bottom: 4px; }
+.recipe-box-steps { font-size: 11px; color: #555; line-height: 1.7; }
+.recipe-box-steps b { color: #333; font-weight: 500; }
+.prep-note {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: #f0faf4;
+  border: 1px solid #c8e8d8;
+  border-radius: 8px;
+  font-size: 12.5px; color: #3a6a50; line-height: 1.65;
+}
+.prep-note strong { color: #1a5a38; }
+
+/* SLEEP */
+.sleep-list { display: flex; flex-direction: column; gap: 1px; background: #e0ddd8; border-radius: 10px; overflow: hidden; }
+.sleep-row {
+  display: flex; align-items: center; gap: 0;
+  background: #fff;
+}
+.sleep-row:first-child { border-radius: 10px 10px 0 0; }
+.sleep-row:last-child { border-radius: 0 0 10px 10px; }
+.sleep-accent { width: 4px; flex-shrink: 0; background: #9ab8d8; align-self: stretch; }
+.sleep-accent.sa-key { background: #7a8abf; }
+.sleep-accent.sa-race { background: #d05a1e; }
+.sleep-date {
+  width: 60px; flex-shrink: 0;
+  padding: 14px 10px;
+  border-right: 1px solid #f0ede8;
+  text-align: center;
+}
+.sleep-dn {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 20px; font-weight: 700; color: #ddd;
+}
+.sleep-dn.key { color: #7a8abf; }
+.sleep-dn.race { color: #d05a1e; }
+.sleep-dw { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; }
+.sleep-body { flex: 1; padding: 12px 15px; display: flex; align-items: center; gap: 20px; }
+.sleep-times { display: flex; gap: 20px; flex-shrink: 0; }
+.sleep-t { display: flex; flex-direction: column; gap: 1px; }
+.sleep-t-lbl { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #bbb; }
+.sleep-t-val {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 17px; font-weight: 600; color: #444;
+}
+.sleep-t-val.key { color: #7a8abf; }
+.sleep-t-val.race { color: #d05a1e; }
+.sleep-note-text { font-size: 11.5px; color: #888; line-height: 1.5; flex: 1; }
+.sleep-dur {
+  min-width: 44px; text-align: right;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 15px; font-weight: 600;
+  color: #bbb; padding-right: 14px; flex-shrink: 0;
+}
+.sleep-dur.ok { color: #2a9463; }
+.sleep-dur.race { color: #d05a1e; }
+.sleep-callout {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: #f5f5ff;
+  border: 1px solid #dddaf8;
+  border-radius: 8px;
+  font-size: 12px; color: #555; line-height: 1.65;
+}
+.sleep-callout strong { color: #444; }
+
+/* HYDRATION */
+.hydro-card {
+  background: #fff; border: 1px solid #e8e6e1;
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 12px;
+}
+.hydro-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px;
+  background: #fafaf8;
+  border-bottom: 1px solid #f0ede8;
+}
+.hydro-head-title { font-size: 13px; font-weight: 600; color: #222; flex: 1; }
+.hydro-head-sub { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #aaa; }
+.hydro-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 11px; }
+.hydro-row { display: flex; gap: 10px; align-items: flex-start; }
+.hydro-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.hd-blue { background: #3a7bb5; }
+.hd-teal { background: #1a9a80; }
+.hd-green { background: #2a9463; }
+.hd-orange { background: #d05a1e; }
+.hd-purple { background: #7a5abf; }
+.hd-red { background: #c03030; }
+.hydro-txt { flex: 1; }
+.hydro-txt-title { font-size: 13px; font-weight: 500; color: #222; margin-bottom: 1px; }
+.hydro-txt-desc { font-size: 12px; color: #777; line-height: 1.55; }
+.garrafa-box {
+  background: #f0fbf8;
+  border: 1px solid #bce0d8;
+  border-radius: 7px;
+  padding: 10px 13px;
+  font-size: 12px; color: #2a6a58; line-height: 1.65;
+}
+.garrafa-box strong { color: #1a5040; }
+.hydro-card.hc-race { border-color: #f0c8b0; }
+.hydro-card.hc-race .hydro-head { background: #fff8f4; border-color: #f0c8b0; }
+.hydro-card.hc-race .hydro-head-title { color: #d05a1e; }
+
+/* FINISH */
+.finish {
+  margin-top: 52px;
+  padding: 32px;
+  text-align: center;
+  border: 1.5px solid #e0ddd8;
+  border-radius: 12px;
+  background: #fff;
+}
+.finish-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+.finish-time {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 56px; font-weight: 700;
+  color: #d05a1e; line-height: 1; margin-bottom: 8px;
+}
+.finish-text { font-size: 13px; color: #888; line-height: 1.6; max-width: 480px; margin: 0 auto; }
+
+@media (max-width: 520px) {
+  .sleep-body { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .sleep-times { gap: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html" class="nav-back">← Início</a>
+  <a href="checklist.html" class="nav-checklist">✓ Checklist da semana</a>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">NB 42k POA · Porto Alegre · 21k</div>
+    <div class="header-title">Meia<br><span>Maratona</span></div>
+    <div class="header-pills">
+      <span class="pill accent">12 de julho · domingo</span>
+      <span class="pill accent">Largada: 07h00</span>
+      <span class="pill accent">Meta: 2h07</span>
+      <span class="pill accent">Pace médio: 6:01/km</span>
+      <span class="pill">21,1 km · 5–12°C</span>
+    </div>
+  </div>
+
+  <!-- BLOCOS DE RITMO -->
+  <div class="section">
+    <div class="section-label">Estratégia de prova</div>
+    <div class="section-title">Blocos de ritmo</div>
+
+    <div class="blocks">
+
+      <div class="block b1">
+        <div class="block-bar"></div>
+        <div class="block-num">1</div>
+        <div class="block-main">
+          <div class="block-km">Km 0 → 5 · ~30 min</div>
+          <div class="block-pace">6:15 /km</div>
+          <div class="block-desc">Largada controlada. No frio o corpo leva mais tempo pra aquecer — forçar no início custa caro no km 18. Resista à adrenalina, respire fundo e deixe a musculatura acordar.</div>
+        </div>
+        <div class="block-right">
+          <span class="effort-label">Esforço</span>
+          <div class="effort-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block b2">
+        <div class="block-bar"></div>
+        <div class="block-num">2</div>
+        <div class="block-main">
+          <div class="block-km">Km 5 → 10 · ~30 min</div>
+          <div class="block-pace">6:05 /km</div>
+          <div class="block-desc">Corpo aquecido, encaixe o ritmo de cruzeiro. Deve parecer confortável mas com substância. Gel 1 no km 7–8 (com água).</div>
+        </div>
+        <div class="block-right">
+          <span class="effort-label">Esforço</span>
+          <div class="effort-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block b3">
+        <div class="block-bar"></div>
+        <div class="block-num">3</div>
+        <div class="block-main">
+          <div class="block-km">Km 10 → 15 · ~30 min</div>
+          <div class="block-pace">6:00 /km</div>
+          <div class="block-desc">Meio da prova. Mantenha a cabeça quieta — aqui é onde a maioria acelera cedo e paga no km 18. Confie no plano. Gel 2 com cafeína no km 14–15.</div>
+        </div>
+        <div class="block-right">
+          <span class="effort-label">Esforço</span>
+          <div class="effort-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block b4">
+        <div class="block-bar"></div>
+        <div class="block-num">4</div>
+        <div class="block-main">
+          <div class="block-km">Km 15 → 18 · ~18 min</div>
+          <div class="block-pace">5:55 /km</div>
+          <div class="block-desc">A cafeína está no pico. Aumente a pressão conscientemente — é aqui que você compra os segundos que precisam. Se sentir travamento, segure o ritmo anterior.</div>
+        </div>
+        <div class="block-right">
+          <span class="effort-label">Esforço</span>
+          <div class="effort-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block b5">
+        <div class="block-bar"></div>
+        <div class="block-num">5</div>
+        <div class="block-main">
+          <div class="block-km">Km 18 → 21,1 · ~18 min</div>
+          <div class="block-pace">5:45 /km ou mais forte</div>
+          <div class="block-desc">Deixe tudo na pista. O que sobrou agora é lucro. Postura ereta, braços trabalhando, passadas curtas e rápidas. Você treinou pra isso.</div>
+        </div>
+        <div class="block-right">
+          <span class="effort-label">Esforço</span>
+          <div class="effort-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pace-note">
+      <strong>A conta fecha assim:</strong> 5km × 6:15 + 5km × 6:05 + 5km × 6:00 + 3km × 5:55 + 3,1km × 5:45 = <strong>~2h05–2h07</strong>. Pace médio de ~6:01/km. Os primeiros kms mais lentos dão margem para os finais mais fortes — negative split controlado.
+    </div>
+  </div>
+
+  <!-- GÉIS -->
+  <div class="section">
+    <div class="section-label">Suplementação</div>
+    <div class="section-title">Estratégia de géis</div>
+
+    <div class="gel-list">
+
+      <div class="gel-item g1">
+        <div class="gel-km">
+          <div class="gel-km-num">7–8</div>
+          <div class="gel-km-lbl">km</div>
+        </div>
+        <div class="gel-body">
+          <span class="gel-tag">Carboidrato · sem cafeína</span>
+          <div class="gel-name">Prevenção do declínio de glicogênio</div>
+          <div class="gel-desc">Com ~45 min de esforço, o glicogênio já está caindo. O gel leva 10–15 min pra absorver, então tomar aqui garante que o carboidrato chegue na corrente antes que o tanque esvazie — não depois. <strong>Tome com água, nunca com isotônico.</strong></div>
+        </div>
+      </div>
+
+      <div class="gel-item g2">
+        <div class="gel-km">
+          <div class="gel-km-num">14–15</div>
+          <div class="gel-km-lbl">km</div>
+        </div>
+        <div class="gel-body">
+          <span class="gel-tag">Carboidrato · com cafeína (50–75mg)</span>
+          <div class="gel-name">Ativação para o trecho decisivo</div>
+          <div class="gel-desc">Cafeína leva 20–30 min pra atingir o pico. Tomando no km 14–15, ela chega em força nos km 17–18 — exatamente quando a fadiga bate e a cabeça começa a negociar. <strong>Tome com água.</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="gel-warning">
+      <strong>Regra de ouro:</strong> nunca estreie gel, marca ou sabor na prova. Use exatamente o que você já testou em treino.
+    </div>
+  </div>
+
+  <!-- ALIMENTAÇÃO -->
+  <div class="section">
+    <div class="section-label">Nutrição</div>
+    <div class="section-title">Alimentação na semana da prova</div>
+
+    <div class="prep-note">
+      <strong>Prep do final de semana anterior (4–5 jul):</strong> Arroz branco em quantidade grande, frango assado ao alho e limão (500g, forno 200°C por 30 min), batata-doce cozida, macarrão pré-cozido congelado em porções. Esses são os pilares da semana toda.
+    </div>
+
+    <div class="week">
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">06</div>
+          <div class="day-name">Segunda-feira</div>
+          <span class="day-badge db-normal">Normal</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">Tapioca ou pão branco + ovo mexido + banana</div>
+              <div class="meal-note">Evite iogurte com granola — fibra desnecessária essa semana.</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + feijão (porção normal) + frango</div>
+              <div class="meal-note">Último dia com feijão em quantidade normal. A partir de amanhã, reduza — gases e desconforto são inimigos na semana da prova.</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + frango + batata-doce cozida</div>
+              <div class="meal-note">Batata-doce substitui bem os legumes — carbo de digestão fácil e sem causar gases.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">07</div>
+          <div class="day-name">Terça-feira</div>
+          <span class="day-badge db-carb">Carbo ↑</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">2 fatias de pão branco + pasta de amendoim + banana + suco</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz branco (porção maior) + batata-doce + frango</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Lanche</div>
+            <div class="meal-info">
+              <div class="meal-title">Banana + punhado de aveia + mel</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Macarrão ao molho de tomate simples + frango desfiado</div>
+              <div class="meal-note">Molho: extrato de tomate, alho, azeite, sal. Sem molho cremoso.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">08</div>
+          <div class="day-name">Quarta-feira</div>
+          <span class="day-badge db-load">Carbo-loading</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">Mingau de aveia com banana e mel + 2 torradas com geleia</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + batata cozida + frango</div>
+              <div class="meal-note">Aumente o arroz e a batata. Proteína menor — não precisa ser o centro do prato essa semana.</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Lanche</div>
+            <div class="meal-info">
+              <div class="meal-title">Tapioca com queijo branco + banana</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Macarrão com frango ao molho de tomate</div>
+              <div class="meal-note">
+                <div class="recipe-box">
+                  <div class="recipe-box-lbl">Receita</div>
+                  <div class="recipe-box-title">Macarrão do carbo-loading</div>
+                  <div class="recipe-box-steps">
+                    <b>200g de penne/espaguete</b> cozido al dente. Refogue <b>frango desfiado</b> em azeite e alho. Misture com <b>extrato de tomate diluído</b>, sal, pimenta leve. Fio de azeite no final. Sem creme de leite, sem queijo pesado.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">09</div>
+          <div class="day-name">Quinta-feira</div>
+          <span class="day-badge db-load">Carbo-loading</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">Pão branco + ovo mexido + banana + suco natural</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + batata-doce + frango</div>
+              <div class="meal-note">Familiaridade é segurança — nada novo no cardápio.</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Lanche</div>
+            <div class="meal-info">
+              <div class="meal-title">Barra de cereal conhecida + banana</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Macarrão com molho de tomate + frango (repita a receita de quarta)</div>
+              <div class="meal-note">Dois dias seguidos de macarrão no jantar — o glicogênio muscular leva 48h pra saturar. É intencional.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">10</div>
+          <div class="day-name">Sexta-feira</div>
+          <span class="day-badge db-carb">Carbo-loading</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">Pão branco + ovo + banana</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + frango + batata-doce — porção moderada</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Lanche</div>
+            <div class="meal-info">
+              <div class="meal-title">Banana + 1 fatia de pão</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Macarrão simples com frango, porção leve</div>
+              <div class="meal-note">Normal — amanhã é sábado, você não trabalha. Durma no horário certo mesmo assim.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">11</div>
+          <div class="day-name">Sábado — véspera da prova</div>
+          <span class="day-badge db-light">Leve · jantar cedo</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Café</div>
+            <div class="meal-info">
+              <div class="meal-title">Pão branco + ovo + banana</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Almoço</div>
+            <div class="meal-info">
+              <div class="meal-title">Arroz + frango + batata-doce — porção moderada</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Lanche</div>
+            <div class="meal-info">
+              <div class="meal-title">Banana + 1 fatia de pão</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Jantar</div>
+            <div class="meal-info">
+              <div class="meal-title">Até 18h30 — macarrão simples com frango, porção leve</div>
+              <div class="meal-note">Jantar bem cedo — você vai dormir às 21h30 e acordar às 4h30. Digestão completa é essencial. Nada de pizza, churrasco, comida nova ou apimentada.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <div class="day-date">12</div>
+          <div class="day-name">Domingo — dia da prova</div>
+          <span class="day-badge db-race">Race day</span>
+        </div>
+        <div class="day-meals">
+          <div class="meal">
+            <div class="meal-time">Pré-prova</div>
+            <div class="meal-info">
+              <div class="meal-title">04h30 — acorda, banheiro, 400–500ml de água</div>
+              <div class="meal-note">Prioridade 1: reidrate antes de qualquer coisa. Se conseguir comer, banana + pão com geleia entre 4h45 e 5h (1h–1h15 antes da largada). Se não rolar, sem problema — o glicogênio da semana dá conta. Saia de casa às 6h.</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Durante</div>
+            <div class="meal-info">
+              <div class="meal-title">Gel 1 no km 7–8 · Gel 2 com cafeína no km 14–15</div>
+            </div>
+          </div>
+          <div class="meal-sep"></div>
+          <div class="meal">
+            <div class="meal-time">Pós-prova</div>
+            <div class="meal-info">
+              <div class="meal-title">Primeiros 30 min: banana + isotônico ou água de coco</div>
+              <div class="meal-note">Depois: refeição completa com proteína + carbo. Você vai merecer comer o que quiser.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SONO -->
+  <div class="section">
+    <div class="section-label">Recuperação</div>
+    <div class="section-title">Horários de sono</div>
+
+    <div class="sleep-list">
+
+      <div class="sleep-row">
+        <div class="sleep-accent"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn">06</div>
+          <div class="sleep-dw">Seg</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val">22h30</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Comece a semana ajustando o horário. Nada de série até tarde no domingo.</div>
+        </div>
+        <div class="sleep-dur">8,5h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn">07</div>
+          <div class="sleep-dw">Ter</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val">22h30</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Sono profundo é quando o corpo sintetiza glicogênio com mais eficiência.</div>
+        </div>
+        <div class="sleep-dur">8,5h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent sa-key"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn key">08</div>
+          <div class="sleep-dw">Qua</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val key">22h00</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Noite mais importante da semana — o glicogênio do carbo-loading consolida aqui. Tela fora às 21h30.</div>
+        </div>
+        <div class="sleep-dur ok">9h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent sa-key"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn key">09</div>
+          <div class="sleep-dw">Qui</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val key">22h00</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Mantenha 9h. Evite treinos intensos à noite — dificultam o adormecer.</div>
+        </div>
+        <div class="sleep-dur ok">9h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn">10</div>
+          <div class="sleep-dw">Sex</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val">22h30</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Dia útil normal. Não precisa dormir mais cedo ainda — guarde isso pro sábado.</div>
+        </div>
+        <div class="sleep-dur">8,5h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent sa-key"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn key">11</div>
+          <div class="sleep-dw">Sáb</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val key">21h30</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val">07h00</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Véspera. Não trabalha hoje — organize tudo durante o dia: roupa, tênis, géis, garrafa, número. Jante até 18h30. Cama às 21h30 para acordar às 4h30.</div>
+        </div>
+        <div class="sleep-dur ok">9,5h</div>
+      </div>
+
+      <div class="sleep-row">
+        <div class="sleep-accent sa-race"></div>
+        <div class="sleep-date">
+          <div class="sleep-dn race">12</div>
+          <div class="sleep-dw">Dom</div>
+        </div>
+        <div class="sleep-body">
+          <div class="sleep-times">
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Dormir</span>
+              <span class="sleep-t-val key">21h30</span>
+            </div>
+            <div class="sleep-t">
+              <span class="sleep-t-lbl">Acordar</span>
+              <span class="sleep-t-val race">04h30</span>
+            </div>
+          </div>
+          <div class="sleep-note-text">Largada às 7h, saída de casa às 6h. Acorde às 4h30: 30 min pra necessidades + hidratação, 30 min descansando/lanche leve se conseguir, 30 min pra se vestir e organizar, saída tranquila às 6h.</div>
+        </div>
+        <div class="sleep-dur race">🏁</div>
+      </div>
+
+    </div>
+
+    <div class="sleep-callout">
+      <strong>Sobre a véspera:</strong> é normalíssimo dormir mal na noite de sábado. O nervosismo e o horário cedo conspiram contra o sono. Não entre em pânico — estudos mostram que o sono de <em>dois dias antes</em> (quinta) impacta mais a performance do que a véspera. Por isso quarta e quinta com 9h cada são as prioridades reais.
+    </div>
+  </div>
+
+  <!-- HIDRATAÇÃO -->
+  <div class="section">
+    <div class="section-label">Hidratação</div>
+    <div class="section-title">Estratégia hídrica</div>
+
+    <div class="hydro-card">
+      <div class="hydro-head">
+        <div class="hydro-head-title">Durante a semana (Seg–Sex)</div>
+        <div class="hydro-head-sub">rotina diária</div>
+      </div>
+      <div class="hydro-body">
+        <div class="hydro-row">
+          <div class="hydro-dot hd-blue"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">2–2,5 litros de água por dia</div>
+            <div class="hydro-txt-desc">Distribuídos ao longo do dia. Acorde às 7h → beba 300–400ml antes do café. Isso coloca o corpo em dia antes de começar o trabalho.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-teal"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Sinal de hidratação ok: urina amarelo-claro</div>
+            <div class="hydro-txt-desc">Amarelo escuro = beba mais. Transparente demais = está diluindo eletrólitos. Tom de limonada clara é o ideal.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-purple"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Nos dias de treino: adicione eletrólitos</div>
+            <div class="hydro-txt-desc">Pós-treino, isotônico ou pitada de sal + limão na água. No frio você transpira menos, mas a perda pelo vapor da respiração é real.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-red"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Evite álcool na quinta e sexta</div>
+            <div class="hydro-txt-desc">Diurético e interfere na recuperação muscular. Uma taça na segunda ou terça não é problema.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hydro-card">
+      <div class="hydro-head">
+        <div class="hydro-head-title">Véspera — sexta-feira</div>
+        <div class="hydro-head-sub">supercompensação hídrica</div>
+      </div>
+      <div class="hydro-body">
+        <div class="hydro-row">
+          <div class="hydro-dot hd-blue"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">2,5 litros ao longo do dia</div>
+            <div class="hydro-txt-desc">400ml ao acordar, 500ml no almoço, 500ml na tarde, 300ml no jantar. Depois só goles pequenos — não acorde para urinar à noite.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-green"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Água de coco à tarde</div>
+            <div class="hydro-txt-desc">Um copo (200ml) no lanche da tarde: reforço de potássio e sódio sem suplemento.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hydro-card hc-race">
+      <div class="hydro-head">
+        <div class="hydro-head-title">Dia da prova — sua garrafa + postos</div>
+        <div class="hydro-head-sub">12 de julho</div>
+      </div>
+      <div class="hydro-body">
+        <div class="garrafa-box">
+          <strong>Sua garrafa de 250ml (água pura):</strong> use nos primeiros kms e para tomar os géis. Gel sempre com água — nunca com isotônico. Isso evita sobrecarga de açúcar e desconforto gástrico.
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-blue"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Ao acordar — 400–500ml de água</div>
+            <div class="hydro-txt-desc">8–9h sem beber. Reidrate antes de qualquer outra coisa. Não tome 1 litro de vez — vai passar mal na largada.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-teal"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Km 0–7 — garrafa de 250ml</div>
+            <div class="hydro-txt-desc">Goles a cada 2–3km. No km 7–8 use um gole para tomar o gel 1. A garrafa termina por aqui.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-orange"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Km 7 em diante — isotônico da organização</div>
+            <div class="hydro-txt-desc">Use os postos da prova. Isotônico repõe sódio e potássio — importante na segunda metade. ~150ml por posto, mesmo sem sede. No frio a percepção de sede engana.</div>
+          </div>
+        </div>
+        <div class="hydro-row">
+          <div class="hydro-dot hd-green"></div>
+          <div class="hydro-txt">
+            <div class="hydro-txt-title">Pós-prova — isotônico + água de coco</div>
+            <div class="hydro-txt-desc">Primeiros 30 min após cruzar a linha. Evite tomar litros de água pura de uma vez — dilui o sódio (hiponatremia).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FINISH -->
+  <div class="finish">
+    <div class="finish-label">meta de chegada</div>
+    <div class="finish-time">2h07</div>
+    <p class="finish-text">Estratégia montada, glicogênio carregado, géis no timing certo, sono e hidratação planejados. Agora é só executar com confiança e aproveitar cada quilômetro da sua primeira meia maratona.</p>
+  </div>
+
+</div>
+</body>
+</html>

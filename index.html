@@ -3,745 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NB 42k POA · Checklist Bruno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>NB 42k POA · Bruno</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f7f6f3;
-    --surface: #ffffff;
-    --border: #e4e1db;
-    --border2: #d0ccc4;
-    --text: #1a1a1a;
-    --text2: #666;
-    --text3: #aaa;
-    --accent: #d05a1e;
-    --accent-light: #fff0e8;
-    --accent-border: #f0c4a8;
-    --green: #2a7a50;
-    --green-light: #eaf5f0;
-    --green-border: #b0d8c4;
-    --blue: #1a5a9a;
-    --blue-light: #eaf2fb;
-    --yellow: #a07010;
-    --yellow-light: #fef6e0;
-    --purple: #6a4a9a;
-    --purple-light: #f3eefb;
-    --red: #c03030;
-    --red-light: #fdf0f0;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f6f3;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 60px;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 80px;
-  }
+.wrap { max-width: 480px; width: 100%; }
 
-  /* HEADER */
-  .top-bar {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .top-bar-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  .top-label {
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 3px;
-  }
-  .top-title {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1;
-  }
-  .top-title span { color: var(--accent); }
-  .top-right { text-align: right; flex-shrink: 0; }
-  .countdown-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 2px; }
-  .countdown-num {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 28px; font-weight: 800;
-    color: var(--accent); line-height: 1;
-  }
-  .countdown-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+.top-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 12px;
+  text-align: center;
+}
 
-  /* PROGRESS */
-  .progress-bar-wrap {
-    max-width: 680px;
-    margin: 12px auto 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .progress-bar-bg {
-    flex: 1;
-    height: 5px;
-    background: var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 10px;
-    transition: width 0.4s ease;
-  }
-  .progress-pct {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 36px;
-    text-align: right;
-  }
+.hero { text-align: center; margin-bottom: 36px; }
 
-  /* MAIN */
-  .main { max-width: 680px; margin: 0 auto; padding: 28px 16px 0; }
+.race-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(42px, 12vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+  color: #111;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+.race-name span { color: #d05a1e; }
 
-  /* DAY SECTION */
-  .day-section { margin-bottom: 28px; }
-  .day-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .day-chip {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 6px;
-    flex-shrink: 0;
-  }
-  .day-title {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .day-progress {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--text3);
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .day-progress.done { color: var(--green); }
+.race-sub {
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 28px;
+}
 
-  /* CATEGORY */
-  .cat-block { margin-bottom: 10px; }
-  .cat-label {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text3);
-    padding: 0 4px;
-    margin-bottom: 5px;
-  }
+.countdown-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e4e1db;
+  border-radius: 14px;
+  padding: 16px 36px;
+  margin-bottom: 8px;
+}
+.countdown-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 54px;
+  font-weight: 800;
+  color: #d05a1e;
+  line-height: 1;
+}
+.countdown-lbl {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-top: 3px;
+}
+.race-date-line {
+  font-size: 12px;
+  color: #bbb;
+  text-align: center;
+  margin-bottom: 36px;
+}
 
-  /* ITEMS */
-  .items { display: flex; flex-direction: column; gap: 2px; }
-  .item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 11px 14px;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, opacity 0.2s;
-    user-select: none;
-  }
-  .item:hover { border-color: var(--border2); }
-  .item.checked {
-    background: #fafaf8;
-    border-color: var(--border);
-    opacity: 0.6;
-  }
-  .item.checked .item-text { text-decoration: line-through; color: var(--text3); }
-  .item.checked .item-note { text-decoration: line-through; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid #e4e1db;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.stat-val {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.stat-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; }
 
-  .checkbox {
-    width: 20px; height: 20px;
-    border-radius: 5px;
-    border: 1.5px solid var(--border2);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s, border-color 0.15s;
-    background: var(--surface);
-  }
-  .item.checked .checkbox {
-    background: var(--green);
-    border-color: var(--green);
-  }
-  .checkbox-tick {
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-  .item.checked .checkbox-tick { opacity: 1; }
+.cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
 
-  .item-body { flex: 1; min-width: 0; }
-  .item-text { font-size: 13.5px; font-weight: 500; color: var(--text); line-height: 1.3; }
-  .item-note { font-size: 11.5px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #e4e1db;
+  border-radius: 14px;
+  padding: 20px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.12s;
+}
+.card-link:hover { border-color: #c0bdb6; transform: translateY(-1px); }
+.card-link:active { transform: translateY(0); }
 
-  .item-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+.card-link.primary { background: #d05a1e; border-color: #d05a1e; }
+.card-link.primary:hover { background: #b84c14; border-color: #b84c14; }
 
-  /* COLOR SCHEMES PER DAY */
-  .chip-mon { background: #f0ede8; color: #666; }
-  .chip-tue { background: #fef6e0; color: var(--yellow); }
-  .chip-wed { background: #fde8e0; color: var(--red); }
-  .chip-thu { background: #fde8e0; color: var(--red); }
-  .chip-fri { background: #eaf2fb; color: var(--blue); }
-  .chip-sat { background: #f3eefb; color: var(--purple); }
-  .chip-sun { background: var(--accent-light); color: var(--accent); }
+.card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.icon-orange { background: #fff0e8; }
+.icon-ghost { background: rgba(255,255,255,0.2); }
+.icon-gray { background: #f0ede8; }
 
-  /* DOT COLORS */
-  .dot-food { background: #f0a860; }
-  .dot-body { background: #60b0f0; }
-  .dot-gear { background: #80c880; }
-  .dot-sleep { background: #a080e0; }
-  .dot-race { background: var(--accent); }
-  .dot-hydro { background: #40b8c8; }
-  .dot-mental { background: #d080a0; }
+.card-body { flex: 1; }
+.card-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: #111; margin-bottom: 2px;
+}
+.card-link.primary .card-title { color: #fff; }
+.card-desc { font-size: 12px; color: #888; line-height: 1.4; }
+.card-link.primary .card-desc { color: rgba(255,255,255,0.72); }
 
-  /* RACE DAY SPECIAL */
-  .race-day-banner {
-    background: var(--accent-light);
-    border: 1px solid var(--accent-border);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .race-day-banner-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-  .race-day-banner-text { font-size: 13px; color: var(--accent); font-weight: 500; line-height: 1.5; }
-  .race-day-banner-time {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--accent);
-    margin-left: auto;
-    flex-shrink: 0;
-  }
+.card-arrow { font-size: 16px; color: #ccc; flex-shrink: 0; }
+.card-link.primary .card-arrow { color: rgba(255,255,255,0.5); }
 
-  /* RESET BTN */
-  .reset-btn {
-    display: block;
-    margin: 32px auto 0;
-    background: none;
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-size: 12px;
-    color: var(--text3);
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: border-color 0.15s, color 0.15s;
-  }
-  .reset-btn:hover { border-color: var(--red); color: var(--red); }
-
-  /* ALL DONE TOAST */
-  .toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--green);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-    z-index: 200;
-    white-space: nowrap;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+.footer { text-align: center; font-size: 11px; color: #ccc; }
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <div class="top-bar-inner">
-    <div>
-      <div class="top-label">Bruno · 21k</div>
-      <div class="top-title">NB 42k <span>POA</span></div>
+<div class="wrap">
+
+  <div class="top-label">Porto Alegre · 12 de julho de 2026</div>
+
+  <div class="hero">
+    <div class="race-name">NB 42k<br><span>POA</span></div>
+    <div class="race-sub">Bruno · 21 km · Largada 07h00</div>
+
+    <div class="countdown-block">
+      <div class="countdown-num" id="days">—</div>
+      <div class="countdown-lbl">dias para a prova</div>
     </div>
-    <div class="top-right">
-      <div class="countdown-label">Faltam</div>
-      <div class="countdown-num" id="countdown">—</div>
-      <div class="countdown-sub">dias · 12 jul</div>
+    <div class="race-date-line" id="detail">domingo, 12 de julho · 07h00</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">21,1</div>
+      <div class="stat-lbl">km</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">2h07</div>
+      <div class="stat-lbl">meta</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">6:01</div>
+      <div class="stat-lbl">pace/km</div>
     </div>
   </div>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
-    </div>
-    <div class="progress-pct" id="progress-pct">0%</div>
+
+  <div style="height:16px"></div>
+
+  <div class="cards">
+
+    <a href="checklist.html" class="card-link primary">
+      <div class="card-icon icon-ghost">✓</div>
+      <div class="card-body">
+        <div class="card-title">Checklist da semana</div>
+        <div class="card-desc">Alimentação, hidratação, sono e kit — marque dia a dia</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="guia.html" class="card-link">
+      <div class="card-icon icon-orange">📋</div>
+      <div class="card-body">
+        <div class="card-title">Guia estratégico</div>
+        <div class="card-desc">Blocos de ritmo, géis, cardápio, sono e hidratação completos</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
   </div>
+
+  <div class="footer">Boa prova, Bruno 🏅</div>
+
 </div>
 
-<div class="main" id="main"></div>
-
-<button class="reset-btn" id="reset-btn">Reiniciar checklist</button>
-<div class="toast" id="toast">✓ Semana 100% concluída!</div>
-
 <script>
-const STORAGE_KEY = 'nb42k_checklist_v1';
-
-const DAYS = [
-  {
-    id: 'mon',
-    date: '07 Jul · Seg',
-    title: 'Segunda-feira',
-    chip: 'chip-mon',
-    cats: [
-      {
-        label: 'Alimentação',
-        dot: 'dot-food',
-        items: [
-          { id: 'mon_f1', text: 'Café: tapioca ou pão + ovo + banana' },
-          { id: 'mon_f2', text: 'Almoço: arroz + feijão + frango', note: 'Último dia com feijão em quantidade normal' },
-          { id: 'mon_f3', text: 'Jantar: arroz + frango + batata-doce' },
-          { id: 'mon_f4', text: 'Sem brócolis, couve-flor ou repolho', note: 'Fermentam e causam gases' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'mon_h1', text: '300–400ml de água ao acordar (antes do café)' },
-          { id: 'mon_h2', text: '2 a 2,5L de água ao longo do dia' },
-        ]
-      },
-      {
-        label: 'Sono',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'mon_s1', text: 'Dormir até 22h30', note: 'Acordar às 7h = 8,5h de sono' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'tue',
-    date: '08 Jul · Ter',
-    title: 'Terça-feira',
-    chip: 'chip-tue',
-    cats: [
-      {
-        label: 'Alimentação · Carbo ↑',
-        dot: 'dot-food',
-        items: [
-          { id: 'tue_f1', text: 'Café: 2 pães + pasta de amendoim + banana + suco' },
-          { id: 'tue_f2', text: 'Almoço: arroz (porção maior) + batata-doce + frango' },
-          { id: 'tue_f3', text: 'Lanche: banana + aveia + mel' },
-          { id: 'tue_f4', text: 'Jantar: macarrão ao molho de tomate + frango' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'tue_h1', text: '2 a 2,5L de água ao longo do dia' },
-          { id: 'tue_h2', text: 'Eletrólitos pós-treino (isotônico ou sal + limão)' },
-        ]
-      },
-      {
-        label: 'Sono',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'tue_s1', text: 'Dormir até 22h30', note: 'Acordar às 7h = 8,5h de sono' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'wed',
-    date: '09 Jul · Qua',
-    title: 'Quarta-feira',
-    chip: 'chip-wed',
-    cats: [
-      {
-        label: 'Alimentação · Carbo-loading',
-        dot: 'dot-food',
-        items: [
-          { id: 'wed_f1', text: 'Café: mingau de aveia com banana e mel + torradas com geleia' },
-          { id: 'wed_f2', text: 'Almoço: arroz + batata cozida + frango', note: 'Aumente o arroz e a batata, reduza a proteína' },
-          { id: 'wed_f3', text: 'Lanche: tapioca com queijo branco + banana' },
-          { id: 'wed_f4', text: 'Jantar: macarrão com frango ao molho de tomate', note: '200g penne/espaguete, frango desfiado, extrato de tomate, alho, azeite' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'wed_h1', text: '2 a 2,5L de água ao longo do dia' },
-        ]
-      },
-      {
-        label: 'Sono · Prioridade máxima',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'wed_s1', text: 'Tela fora às 21h30' },
-          { id: 'wed_s2', text: 'Dormir às 22h00', note: 'Noite mais importante da semana — glicogênio consolida aqui' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'thu',
-    date: '10 Jul · Qui',
-    title: 'Quinta-feira',
-    chip: 'chip-thu',
-    cats: [
-      {
-        label: 'Alimentação · Carbo-loading',
-        dot: 'dot-food',
-        items: [
-          { id: 'thu_f1', text: 'Café: pão branco + ovo mexido + banana + suco' },
-          { id: 'thu_f2', text: 'Almoço: arroz + batata-doce + frango' },
-          { id: 'thu_f3', text: 'Lanche: barra de cereal conhecida + banana' },
-          { id: 'thu_f4', text: 'Jantar: macarrão com molho de tomate + frango', note: 'Repita a receita de quarta — 2 dias seguidos é intencional' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'thu_h1', text: '2 a 2,5L de água ao longo do dia' },
-          { id: 'thu_h2', text: 'Zero álcool a partir de hoje' },
-        ]
-      },
-      {
-        label: 'Sono · Prioridade máxima',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'thu_s1', text: 'Tela fora às 21h30' },
-          { id: 'thu_s2', text: 'Dormir às 22h00', note: '9h de sono — segunda noite mais importante da semana' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'fri',
-    date: '11 Jul · Sex',
-    title: 'Sexta-feira',
-    chip: 'chip-fri',
-    cats: [
-      {
-        label: 'Alimentação',
-        dot: 'dot-food',
-        items: [
-          { id: 'fri_f1', text: 'Café: pão branco + ovo + banana' },
-          { id: 'fri_f2', text: 'Almoço: arroz + frango + batata-doce (porção moderada)' },
-          { id: 'fri_f3', text: 'Lanche: banana + 1 fatia de pão' },
-          { id: 'fri_f4', text: 'Jantar: macarrão simples com frango, leve', note: 'Normal — guarde o "jantar cedo" para amanhã' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'fri_h1', text: '2,5L de água ao longo do dia' },
-          { id: 'fri_h2', text: 'Água de coco no lanche da tarde', note: 'Reforço de potássio e sódio' },
-        ]
-      },
-      {
-        label: 'Sono',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'fri_s1', text: 'Dormir até 22h30', note: 'Acordar às 7h — guarde a noite cedo para o sábado' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'sat',
-    date: '12 Jul · Sáb',
-    title: 'Sábado — véspera',
-    chip: 'chip-sat',
-    cats: [
-      {
-        label: 'Alimentação',
-        dot: 'dot-food',
-        items: [
-          { id: 'sat_f1', text: 'Café: pão branco + ovo + banana' },
-          { id: 'sat_f2', text: 'Almoço: arroz + frango + batata-doce, moderado' },
-          { id: 'sat_f3', text: 'Lanche: banana + pão' },
-          { id: 'sat_f4', text: 'Jantar até 18h30: macarrão leve com frango', note: 'Vai dormir às 21h30 — digestão completa é essencial' },
-          { id: 'sat_f5', text: 'Nada de pizza, churrasco, comida nova ou apimentada' },
-        ]
-      },
-      {
-        label: 'Hidratação',
-        dot: 'dot-hydro',
-        items: [
-          { id: 'sat_h1', text: 'Supercompensação: 2,5L ao longo do dia' },
-          { id: 'sat_h2', text: 'Água de coco no lanche da tarde' },
-          { id: 'sat_h3', text: 'Só goles pequenos após o jantar', note: 'Para não acordar para urinar à noite' },
-        ]
-      },
-      {
-        label: 'Kit de prova · preparar tudo hoje',
-        dot: 'dot-gear',
-        items: [
-          { id: 'sat_g1', text: 'Tênis + meias (os que você treina)' },
-          { id: 'sat_g2', text: 'Roupa de corrida + camada extra para o frio' },
-          { id: 'sat_g3', text: 'Luvas e touca para a largada' },
-          { id: 'sat_g4', text: 'Gel 1 (sem cafeína) + Gel 2 (com cafeína)', note: 'Mesmo gel que você usou em treino — sem novidade' },
-          { id: 'sat_g5', text: 'Garrafa de 250ml (encher com água na manhã)' },
-          { id: 'sat_g6', text: 'Número de peito + chip' },
-          { id: 'sat_g7', text: 'Vaselina (axilas, virilha, coxas)' },
-          { id: 'sat_g8', text: 'Relógio/GPS carregado' },
-          { id: 'sat_g9', text: 'Fone de ouvido carregado (se usar)' },
-          { id: 'sat_g10', text: 'Transporte/rota até o local da prova definidos' },
-        ]
-      },
-      {
-        label: 'Sono',
-        dot: 'dot-sleep',
-        items: [
-          { id: 'sat_s1', text: 'Cama às 21h30', note: 'Acorda às 4h30 — 7h de sono. Normal dormir mal, não entre em pânico' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'sun',
-    date: '13 Jul · Dom',
-    title: 'Domingo · NB 42k POA 🏁',
-    chip: 'chip-sun',
-    isRaceDay: true,
-    cats: [
-      {
-        label: 'Manhã · cronograma',
-        dot: 'dot-race',
-        items: [
-          { id: 'sun_r1', text: '04h30 — Acorda', note: 'Banheiro, beba 400–500ml de água imediatamente' },
-          { id: 'sun_r2', text: '04h45–05h00 — Lanche leve (se conseguir)', note: 'Banana + pão com geleia. Se não rolar, sem problema.' },
-          { id: 'sun_r3', text: '05h00–05h30 — Veste kit, aplica vaselina, enche garrafa' },
-          { id: 'sun_r4', text: '06h00 — Sai de casa' },
-          { id: 'sun_r5', text: 'Chega no local, banheiro (fila!), aquecimento leve' },
-          { id: 'sun_r6', text: '07h00 — Largada 🚀' },
-        ]
-      },
-      {
-        label: 'Durante a prova',
-        dot: 'dot-race',
-        items: [
-          { id: 'sun_p1', text: 'Km 0–5 a 6:15/km — segurar a adrenalina' },
-          { id: 'sun_p2', text: 'Km 5–10 a 6:05/km — encaixar o ritmo' },
-          { id: 'sun_p3', text: 'Km 7–8 — Gel 1 (sem cafeína) com água da garrafa' },
-          { id: 'sun_p4', text: 'Km 10–15 a 6:00/km — cabeça quieta' },
-          { id: 'sun_p5', text: 'Km 14–15 — Gel 2 (com cafeína) com água do posto' },
-          { id: 'sun_p6', text: 'Km 15–18 a 5:55/km — pressionar' },
-          { id: 'sun_p7', text: 'Km 18–21 a 5:45/km — deixar tudo na pista' },
-        ]
-      },
-      {
-        label: 'Pós-prova',
-        dot: 'dot-body',
-        items: [
-          { id: 'sun_a1', text: 'Primeiros 30 min: banana + isotônico ou água de coco' },
-          { id: 'sun_a2', text: 'Refeição completa: proteína + carbo — merece comer o que quiser 🎉' },
-        ]
-      },
-    ]
-  },
-];
-
-// State
-let state = {};
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) state = JSON.parse(saved);
-  } catch(e) { state = {}; }
-}
-
-function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function getAllItems() {
-  const items = [];
-  DAYS.forEach(day => day.cats.forEach(cat => cat.items.forEach(item => items.push(item))));
-  return items;
-}
-
-function countDayItems(day) {
-  let total = 0, done = 0;
-  day.cats.forEach(cat => cat.items.forEach(item => {
-    total++;
-    if (state[item.id]) done++;
-  }));
-  return { total, done };
-}
-
-function updateProgress() {
-  const all = getAllItems();
-  const done = all.filter(i => state[i.id]).length;
-  const pct = all.length ? Math.round((done / all.length) * 100) : 0;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-pct').textContent = pct + '%';
-  if (pct === 100) showToast();
-}
-
-function updateCountdown() {
+function update() {
   const race = new Date('2026-07-12T07:00:00-03:00');
   const now = new Date();
   const diff = race - now;
-  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  const el = document.getElementById('countdown');
-  if (days > 0) {
-    el.textContent = days;
-  } else if (days === 0) {
-    el.textContent = 'HOJE';
-    el.style.fontSize = '18px';
+  const el = document.getElementById('days');
+  const detail = document.getElementById('detail');
+  if (diff > 0) {
+    el.textContent = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    detail.textContent = `${h}h ${m}min restantes hoje · dom 12 jul · 07h00`;
   } else {
-    el.textContent = '🏅';
+    el.textContent = '🏁';
+    detail.textContent = 'É hoje! Boa prova, Bruno!';
   }
 }
-
-function showToast() {
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-function toggleItem(id) {
-  state[id] = !state[id];
-  saveState();
-  const el = document.querySelector(`[data-id="${id}"]`);
-  if (el) {
-    if (state[id]) el.classList.add('checked');
-    else el.classList.remove('checked');
-  }
-  updateProgress();
-  updateDayProgress(id);
-}
-
-function updateDayProgress(itemId) {
-  DAYS.forEach(day => {
-    const hasItem = day.cats.some(cat => cat.items.some(i => i.id === itemId));
-    if (!hasItem) return;
-    const { total, done } = countDayItems(day);
-    const el = document.getElementById(`day-prog-${day.id}`);
-    if (el) {
-      el.textContent = `${done}/${total}`;
-      el.className = 'day-progress' + (done === total ? ' done' : '');
-    }
-  });
-}
-
-function render() {
-  const main = document.getElementById('main');
-  main.innerHTML = '';
-
-  DAYS.forEach(day => {
-    const { total, done } = countDayItems(day);
-    const section = document.createElement('div');
-    section.className = 'day-section';
-
-    let banner = '';
-    if (day.isRaceDay) {
-      banner = `<div class="race-day-banner">
-        <div class="race-day-banner-icon">🏃</div>
-        <div class="race-day-banner-text"><strong>NB 42k POA</strong><br>21k · Porto Alegre</div>
-        <div class="race-day-banner-time">07h00</div>
-      </div>`;
-    }
-
-    let catsHtml = '';
-    day.cats.forEach(cat => {
-      let itemsHtml = '';
-      cat.items.forEach(item => {
-        const checked = state[item.id] ? 'checked' : '';
-        const note = item.note ? `<div class="item-note">${item.note}</div>` : '';
-        itemsHtml += `
-          <div class="item ${checked}" data-id="${item.id}" onclick="toggleItem('${item.id}')">
-            <div class="checkbox">
-              <svg class="checkbox-tick" width="12" height="9" viewBox="0 0 12 9" fill="none">
-                <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="item-body">
-              <div class="item-text">${item.text}</div>
-              ${note}
-            </div>
-            <div class="item-dot ${cat.dot}"></div>
-          </div>`;
-      });
-      catsHtml += `
-        <div class="cat-block">
-          <div class="cat-label">${cat.label}</div>
-          <div class="items">${itemsHtml}</div>
-        </div>`;
-    });
-
-    section.innerHTML = `
-      ${banner}
-      <div class="day-header">
-        <div class="day-chip ${day.chip}">${day.date}</div>
-        <div class="day-title">${day.title}</div>
-        <div class="day-progress${done === total ? ' done' : ''}" id="day-prog-${day.id}">${done}/${total}</div>
-      </div>
-      ${catsHtml}`;
-
-    main.appendChild(section);
-  });
-}
-
-document.getElementById('reset-btn').addEventListener('click', () => {
-  if (confirm('Reiniciar todo o checklist?')) {
-    state = {};
-    saveState();
-    render();
-    updateProgress();
-  }
-});
-
-loadState();
-render();
-updateProgress();
-updateCountdown();
-setInterval(updateCountdown, 60000);
+update();
+setInterval(update, 30000);
 </script>
 </body>
 </html>
